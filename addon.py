@@ -1,5 +1,8 @@
 ﻿import xbmc
+import xbmcaddon
 import httplib2
+
+__settings__  = xbmcaddon.Addon(id="service.kodi.anna")
  
 class XBMCPlayer(xbmc.Player):
 	def __init__(self, *args):
@@ -24,11 +27,30 @@ player = XBMCPlayer()
 monitor = xbmc.Monitor()
 h = httplib2.Http()
 
+def getAdress():
+	ipaddress = __settings__.getSetting("ipaddress")
+	port = __settings__.getSetting("port")
+	deviceid = __settings__.getSetting("deviceid")
+	return "http://%s:%s/device/%s" % (ipaddress, port, deviceid)
+
+def request(adress, switchOn):
+	if switchOn:
+		adress = adress + "/1"
+	else:
+		adress = adress + "/0"
+
+	h = httplib2.Http()
+	h.request(adress, "GET")
+
 def switchOn():
-	h.request("http://192.168.1.11:8080/device/2/1", "GET")
+	adress = getAdress()
+	request(adress, True)
 
 def switchOff():
-	h.request("http://192.168.1.11:8080/device/2/0", "GET")
+	adress = getAdress()
+	request(adress, False)
+
+
 
 while True:
 	if monitor.waitForAbort(10):
