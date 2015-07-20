@@ -1,6 +1,6 @@
 <strings>
     <string id="32001">General</string>
-    <string id="32002">Url</string>
+    <string id="32002">Hostname</string>
     <string id="32003">Port</string>
     <string id="32004">Device id</string>
 </strings>

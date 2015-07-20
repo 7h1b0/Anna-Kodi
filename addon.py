@@ -1,55 +1,54 @@
-﻿import xbmc
-import xbmcaddon
-import httplib2
+﻿# Imports -----------------------------------------------
+import xbmc, xbmcaddon
+import httplib
 
-__settings__  = xbmcaddon.Addon(id="service.kodi.anna")
+
+# Settings -----------------------------------------------
+settings  = xbmcaddon.Addon(id="service.kodi.anna")
  
-class XBMCPlayer(xbmc.Player):
+
+# Classes ------------------------------------------------
+class Anna(xbmc.Player):
 	def __init__(self, *args):
 		pass
 
 	def onPlayBackStarted(self):
-		switchOff()
+		self.request(False)
 
 	def onPlayBackPaused(self):
-		switchOn()
+		self.request(True)
 
 	def onPlayBackResumed(self):
-		switchOff()
+		self.request(False)
 
 	def onPlayBackEnded(self):
-		switchOn()
+		self.request(True)
 
 	def onPlayBackStopped(self):
-		switchOn()
+		self.request(True)
 
-player = XBMCPlayer()
-monitor = xbmc.Monitor()
-h = httplib2.Http()
+	def request(self,switchOn):
+		hostname = settings.getSetting("hostname")
+		port = settings.getSetting("port")
+		deviceid = settings.getSetting("deviceid")
 
-def getAdress(switchOn):
-	ipaddress = __settings__.getSetting("ipaddress")
-	port = __settings__.getSetting("port")
-	deviceid = __settings__.getSetting("deviceid")
-	if switchOn:
-		return "http://%s:%s/device/on/%s" % (ipaddress, port, deviceid)
-	else:
-		return "http://%s:%s/device/off/%s" % (ipaddress, port, deviceid)
+		connection = httplib.HTTPConnection(hostname,port)
+		connection.connect()
+		if switchOn:
+			url = "/device/on/%s" % deviceid
+		else:
+			url = "/device/off/%s" % deviceid
 
-def request(switchOn):
-	adress = getAdress(switchOn)
+		connection.request("GET", url)
 
-	h = httplib2.Http()
-	h.request(adress, "GET")
-
-def switchOn():
-	request(True)
-
-def switchOff():
-	request(False)
+	def execute(self):
+		monitor = xbmc.Monitor()
+		while True:
+			if monitor.waitForAbort(10):
+				break
 
 
 
-while True:
-	if monitor.waitForAbort(10):
-		break
+# Main ----------------------------------------------
+anna = Anna()
+anna.execute()
