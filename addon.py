@@ -27,28 +27,26 @@ player = XBMCPlayer()
 monitor = xbmc.Monitor()
 h = httplib2.Http()
 
-def getAdress():
+def getAdress(switchOn):
 	ipaddress = __settings__.getSetting("ipaddress")
 	port = __settings__.getSetting("port")
 	deviceid = __settings__.getSetting("deviceid")
-	return "http://%s:%s/device/%s" % (ipaddress, port, deviceid)
-
-def request(adress, switchOn):
 	if switchOn:
-		adress = adress + "/1"
+		return "http://%s:%s/device/on/%s" % (ipaddress, port, deviceid)
 	else:
-		adress = adress + "/0"
+		return "http://%s:%s/device/off/%s" % (ipaddress, port, deviceid)
+
+def request(switchOn):
+	adress = getAdress(switchOn)
 
 	h = httplib2.Http()
 	h.request(adress, "GET")
 
 def switchOn():
-	adress = getAdress()
-	request(adress, True)
+	request(True)
 
 def switchOff():
-	adress = getAdress()
-	request(adress, False)
+	request(False)
 
 
 
