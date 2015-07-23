@@ -2,3 +2,4 @@
 1.1.0 Settings
 1.1.1 Update routes
 1.1.2 Remove dependence
+1.2.0 No more switch on/off between items in a playlist
