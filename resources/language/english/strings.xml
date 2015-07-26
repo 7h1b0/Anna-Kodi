@@ -1,6 +1,11 @@
 <strings>
-    <string id="32001">General</string>
+    <string id="32001">Host</string>
     <string id="32002">Hostname</string>
     <string id="32003">Port</string>
-    <string id="32004">Device id</string>
+    <string id="32004">Device</string>
+    <string id="32005">Device on start</string>
+    <string id="32006">Device on resume</string>
+    <string id="32007">Device on pause</string>
+    <string id="32008">Device on stop</string>
+    <string id="32009">Device on end</string>
 </strings>

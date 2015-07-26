@@ -17,26 +17,29 @@ class Anna(xbmc.Player):
 
 	def onPlayBackStarted(self):
 		if playlist.getposition() == 0:
-			self.request(False)
+			deviceid = settings.getSetting("deviceid_start")
+			self.request(deviceid, False)
 
 	def onPlayBackPaused(self):
-		self.request(True)
+		deviceid = settings.getSetting("deviceid_pause")
+		self.request(deviceid,True)
 
 	def onPlayBackResumed(self):
-		self.request(False)
+		deviceid = settings.getSetting("deviceid_resume")
+		self.request(deviceid,False)
 
 	def onPlayBackEnded(self):
 		if playlist.size() == playlist.getposition() + 1:
+			deviceid = settings.getSetting("deviceid_end")
 			self.request(True)
 
 	def onPlayBackStopped(self):
-		self.request(True)
+		deviceid = settings.getSetting("deviceid_stop")
+		self.request(deviceid, True)
 
-	def request(self,switchOn):
-		xbmc.log("Request done")
+	def request(self,deviceid, switchOn):
 		hostname = settings.getSetting("hostname")
 		port = settings.getSetting("port")
-		deviceid = settings.getSetting("deviceid")
 
 		connection = httplib.HTTPConnection(hostname,port)
 		connection.connect()
