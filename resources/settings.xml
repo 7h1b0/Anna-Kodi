@@ -6,10 +6,18 @@
     </category>
 
     <category label="32004">
-        <setting label="32005" type="number" id="deviceid_start" default=""/>
-    	<setting label="32006" type="number" id="deviceid_resume" default=""/>
-        <setting label="32007" type="number" id="deviceid_pause" default=""/>
-        <setting label="32008" type="number" id="deviceid_stop" default=""/>
-        <setting label="32009" type="number" id="deviceid_end" default=""/>
+        <setting label="32006" type="number" id="deviceid_start_on" default=""/>
+        <setting label="32007" type="number" id="deviceid_resume_on" default=""/>
+        <setting label="32008" type="number" id="deviceid_pause_on" default=""/>
+        <setting label="32009" type="number" id="deviceid_stop_on" default=""/>
+        <setting label="32010" type="number" id="deviceid_end_on" default=""/>
+    </category>
+
+    <category label="32005">
+        <setting label="32006" type="number" id="deviceid_start_off" default=""/>
+        <setting label="32007" type="number" id="deviceid_resume_off" default=""/>
+        <setting label="32008" type="number" id="deviceid_pause_off" default=""/>
+        <setting label="32009" type="number" id="deviceid_stop_off" default=""/>
+        <setting label="32010" type="number" id="deviceid_end_off" default=""/>
     </category>
 </settings>
