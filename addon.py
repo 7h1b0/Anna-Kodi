@@ -16,49 +16,37 @@ class Anna(xbmc.Player):
 		pass
 
 	def onPlayBackStarted(self):
-		if playlist.getposition() == 0:
-			deviceid_off = settings.getSetting("deviceid_start_on")
-			self.request(deviceid_off, True)
-			deviceid_on = settings.getSetting("deviceid_start_off")
-			self.request(deviceid_on, False)
+		# if playlist.getposition() == 0:
+		sceneId = settings.getSetting("sceneid_on_start")
+		self.request(sceneId)
 
 	def onPlayBackPaused(self):
-		deviceid_on = settings.getSetting("deviceid_pause_on")
-		self.request(deviceid_on,True)
-		deviceid_off = settings.getSetting("deviceid_pause_off")
-		self.request(deviceid_off,False)
+		sceneId = settings.getSetting("sceneid_on_pause")
+		self.request(sceneId)
 
 	def onPlayBackResumed(self):
-		deviceid_on = settings.getSetting("deviceid_resume_on")
-		self.request(deviceid_on,True)
-		deviceid_off = settings.getSetting("deviceid_resume_off")
-		self.request(deviceid_off,False)
+		sceneId = settings.getSetting("sceneid_on_resume")
+		self.request(sceneId)
 
 	def onPlayBackEnded(self):
 		if playlist.size() == playlist.getposition() + 1:
-			deviceid_on = settings.getSetting("deviceid_end_on")
-			self.request(deviceid_on, True)
-			deviceid_off = settings.getSetting("deviceid_end_off")
-			self.request(deviceid_off, False)
+			sceneId = settings.getSetting("sceneid_on_end")
+			self.request(sceneId)
 
 	def onPlayBackStopped(self):
-		deviceid_on = settings.getSetting("deviceid_stop_on")
-		self.request(deviceid_on, True)
-		deviceid_off = settings.getSetting("deviceid_stop_off")
-		self.request(deviceid_off, False)
+		sceneId = settings.getSetting("sceneid_on_stop")
+		self.request(sceneId)
 
-	def request(self,deviceid, switchOn):
-		if deviceid == 0 :
+	def request(self,sceneId):
+		if sceneId == 0 :
 			return
 		hostname = settings.getSetting("hostname")
 		port = settings.getSetting("port")
 
+		print(hostname)
 		connection = httplib.HTTPConnection(hostname,port)
 		connection.connect()
-		if switchOn:
-			url = "/device/on/%s" % deviceid
-		else:
-			url = "/device/off/%s" % deviceid
+		url = "/scene/%s/action" % sceneId
 
 		connection.request("GET", url)
 
