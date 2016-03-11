@@ -2,10 +2,5 @@
     <string id="32001">Host</string>
     <string id="32002">Hostname</string>
     <string id="32003">Port</string>
-    <string id="32004">Scene</string>
-    <string id="32006">On start</string>
-    <string id="32007">On resume</string>
-    <string id="32008">On pause</string>
-    <string id="32009">On stop</string>
-    <string id="32010">On end</string>
+    <string id="32004">Token</string>
 </strings>
