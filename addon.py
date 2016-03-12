@@ -39,9 +39,9 @@ class Anna(xbmc.Player):
 		token = settings.getSetting("token")
 		url = "/api/kodi/%s" % action
 
-		connection.connect()
+		connection.putrequest("GET", url)
 		connection.putheader("x-access-token", token)
-		connection.request("GET", url)
+		connection.endheaders()
 
 	def execute(self):
 		monitor = xbmc.Monitor()

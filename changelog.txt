@@ -7,3 +7,4 @@
 1.4.0 Define devices to Power on and off
 2.0.0 Compatibility with anna v2
 3.0.0 Act as a sensors
+3.0.1 Fix "Cannot Send Header"
