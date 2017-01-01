@@ -5,4 +5,11 @@
         <setting label="32003" type="number" id="port" default=""/>
         <setting label="32004" type="text" id="token" default=""/>
     </category>
+    <category label="32005">
+        <setting label="32006" type="text" id="onStart" default=""/>
+        <setting label="32007" type="text" id="onResume" default=""/>
+        <setting label="32008" type="text" id="onPause" default=""/>
+        <setting label="32009" type="text" id="onStop" default=""/>
+        <setting label="32010" type="text" id="onEnd" default=""/>
+    </category>
 </settings>
