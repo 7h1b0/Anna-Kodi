@@ -8,7 +8,7 @@ settings  = xbmcaddon.Addon(id="service.kodi.anna")
 
 # Playlist -----------------------------------------------
 playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
- 
+
 
 # Classes ------------------------------------------------
 class Anna(xbmc.Player):
@@ -16,20 +16,20 @@ class Anna(xbmc.Player):
 		pass
 
 	def onPlayBackStarted(self):
-		self.request("start")
+		self.request("kodi_on_play")
 
 	def onPlayBackPaused(self):
-		self.request("pause")
+		self.request("kodi_on_pause")
 
 	def onPlayBackResumed(self):
-		self.request("resume")
+		self.request("kodi_on_play")
 
 	def onPlayBackEnded(self):
 		if playlist.size() == playlist.getposition() + 1:
-			self.request("ended")
+			self.request("kodi_on_pause")
 
 	def onPlayBackStopped(self):
-		self.request("stop")
+		self.request("kodi_on_pause")
 
 	def request(self, action):
 		hostname = settings.getSetting("hostname")
@@ -37,7 +37,7 @@ class Anna(xbmc.Player):
 
 		connection = httplib.HTTPConnection(hostname, port)
 		token = settings.getSetting("token")
-		url = "/api/kodi/%s" % action
+		url = "/api/alias/%s" % action
 
 		connection.putrequest("GET", url)
 		connection.putheader("x-access-token", token)
