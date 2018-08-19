@@ -42,7 +42,7 @@ class Anna(xbmc.Player):
 
 		connection = httplib.HTTPConnection(hostname, port)
 		token = settings.getSetting("token")
-		url = "/api/alias/%s" % alias
+		url = "/api/alias/%s/action" % alias
 
 		connection.putrequest("GET", url)
 		connection.putheader("x-access-token", token)

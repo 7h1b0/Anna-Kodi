@@ -29,7 +29,7 @@ msgid "Token"
 msgstr ""
 
 msgctxt "#32005"
-msgid "Alias"
+msgid "Alias ID"
 msgstr ""
 
 msgctxt "#32006"
