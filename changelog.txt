@@ -7,3 +7,4 @@
 1.4.0 Define devices to Power on and off
 2.0.0 Compatibility with anna v2
 3.0.0 Support anna v3
+3.1.1 Support anna v3.1.1
