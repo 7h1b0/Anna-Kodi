@@ -8,3 +8,4 @@
 2.0.0 Compatibility with anna v2
 3.0.0 Support anna v3
 3.1.1 Support anna v3.1.1
+3.2.0 Change hook for Kodi 18

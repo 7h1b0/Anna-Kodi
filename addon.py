@@ -15,7 +15,7 @@ class Anna(xbmc.Player):
 	def __init__(self, *args):
 		pass
 
-	def onPlayBackStarted(self):
+	def onAVStarted(self):
 		alias = settings.getSetting("onStart")
 		self.request(alias)
 
