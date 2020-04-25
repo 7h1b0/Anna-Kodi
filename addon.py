@@ -28,7 +28,7 @@ class Anna(xbmc.Player):
 		self.request(alias)
 
 	def onPlayBackEnded(self):
-		if playlist.size() == playlist.getposition() + 1 or playlist.size() == 0:
+		if playlist.getposition() < 0 or playlist.size() == playlist.getposition() + 1:
 			alias = settings.getSetting("onEnd")
 			self.request(alias)
 
