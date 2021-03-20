@@ -1,6 +1,6 @@
 ﻿# Imports -----------------------------------------------
 import xbmc, xbmcaddon
-import httplib
+from urllib import request
 
 
 # Settings -----------------------------------------------
@@ -39,14 +39,12 @@ class Anna(xbmc.Player):
 	def request(self, alias):
 		hostname = settings.getSetting("hostname")
 		port = settings.getSetting("port")
-
-		connection = httplib.HTTPConnection(hostname, port)
 		token = settings.getSetting("token")
-		url = "/api/alias/%s/action" % alias
-
-		connection.putrequest("GET", url)
-		connection.putheader("x-access-token", token)
-		connection.endheaders()
+        
+		url = "http://%s:%s/api/alias/%s/action" % (hostname, port, alias)
+		headers = {'x-access-token': token}
+		req = request.Request(url, headers=headers)
+		request.urlopen(req)        
 
 	def execute(self):
 		monitor = xbmc.Monitor()
