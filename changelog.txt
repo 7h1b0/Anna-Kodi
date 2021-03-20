@@ -11,3 +11,4 @@
 3.2.0 Change hook for Kodi 18
 3.2.1 Handle case where playlist is empty
 3.2.2 Handle position < 0
+4.0.0 Support only Kodi 19
